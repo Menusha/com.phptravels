@@ -2,6 +2,7 @@ package stepDefinition;
 
 import org.openqa.selenium.By;		
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.Select;
 
@@ -62,7 +63,7 @@ public class Steps{
        Thread.sleep(1000);
        
     }
-    @Then("^Verify error message and close the browser$")					
+    @Then("^Verify message and close the browser$")					
     public void Verify_error_alert_and_close_the_browser() throws Throwable 							
     {	
         driver.quit();    
@@ -70,9 +71,11 @@ public class Steps{
     @Then("^Verify user logout succesfully$")					
     public void Verify_user_logout() throws Throwable 							
     {	
-    	Select userLogout = new Select(driver.findElement(By.xpath("//div[@class='dropdown dropdown-login dropdown-tab show']//a[@id='dropdownCurrency']")));
+    	Thread.sleep(2000);
+    	driver.findElement(By.xpath("//div[@class='dropdown dropdown-login dropdown-tab']")).click();	
     	Thread.sleep(1000);
-    	userLogout.selectByVisibleText("Logout");
+    	driver.findElement(By.xpath("//a[contains(text(),'Logout')]")).click();	    	
+      	Thread.sleep(2000);
         driver.quit();    
     }
 
